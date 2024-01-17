@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "866935785368",
+    "project_id": "insocurr",
+    "storage_bucket": "insocurr.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:866935785368:android:a305d76b296d7a44c10ded",
+        "android_client_info": {
+          "package_name": "com.example.inso_cur"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBbGVZOWaGZWNJ1BImCzpY_t2f-crmghvA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
