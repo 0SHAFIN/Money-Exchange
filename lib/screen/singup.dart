@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:inso_cur/components/inputField.dart';
 import 'package:inso_cur/components/roundButton.dart';
 import 'package:inso_cur/routs/routename.dart';
-import 'package:inso_cur/screen/test_country_details.dart';
 import 'package:inso_cur/service/auth/register.dart';
 import 'package:provider/provider.dart';
 

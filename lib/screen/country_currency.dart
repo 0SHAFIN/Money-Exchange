@@ -70,21 +70,24 @@ class CountryListState extends State<CountryDetailsList> {
             height: 30,
           ),
           Expanded(
-            child: FutureBuilder(
-                future: Country().getInfo(),
-                builder: (
-                  context,
-                  AsyncSnapshot<dynamic> snapshot,
-                ) {
-                  if (snapshot.hasData) {
-                    return ListView.builder(itemBuilder: (context, index) {
-                      String tmpName = snapshot.data![index]["name"]["common"]
-                          .toString()
-                          .toLowerCase();
-                      int siz = snapshot.data!.length;
-                      print("size: $siz");
-                      if (index < siz) {
-                        if (searchController.text.isEmpty) {
+            child: // Inside your build method, update the FutureBuilder:
+                FutureBuilder(
+              future: Country().getInfo(),
+              builder: (context, AsyncSnapshot<dynamic> snapshot) {
+                if (snapshot.hasData && snapshot.data is List) {
+                  List<dynamic> data = snapshot.data;
+
+                  return ListView.builder(
+                    itemCount: data.length,
+                    itemBuilder: (context, index) {
+                      if (index >= 0 && index < data.length) {
+                        String tmpName = data[index]["name"]["common"]
+                            .toString()
+                            .toLowerCase();
+
+                        if (searchController.text.isEmpty ||
+                            tmpName.contains(
+                                searchController.text.toLowerCase())) {
                           return Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 20),
                             child: Column(
@@ -92,57 +95,17 @@ class CountryListState extends State<CountryDetailsList> {
                                 Card(
                                   child: ListTile(
                                     leading: Image.network(
-                                      snapshot.data[index]["flags"]["png"],
+                                      data[index]["flags"]["png"],
                                       height: 35,
                                       width: 35,
                                     ),
-                                    title: Text(
-                                        snapshot.data[index]["name"]["common"]),
-                                    subtitle: Row(
-                                      children: [
-                                        const Text("Currency: "),
-                                        Text(
-                                          snapshot.data[index]["currencies"]
-                                              .toString()
-                                              .substring(1, 4),
-                                          style: const TextStyle(
-                                              fontSize: 15,
-                                              fontWeight: FontWeight.bold,
-                                              fontStyle: FontStyle.italic),
-                                        ),
-                                      ],
-                                    ),
-                                    trailing: Text(data2["rates"][snapshot
-                                            .data[index]["currencies"]
-                                            .toString()
-                                            .substring(1, 4)]
-                                        .toString()),
-                                  ),
-                                )
-                              ],
-                            ),
-                          );
-                        } else if (tmpName
-                            .contains(searchController.text.toLowerCase())) {
-                          return Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 20),
-                            child: Column(
-                              children: [
-                                Card(
-                                  child: ListTile(
-                                    leading: Image.network(
-                                      snapshot.data[index]["flags"]["png"],
-                                      height: 35,
-                                      width: 35,
-                                    ),
-                                    title: Text(
-                                        snapshot.data[index]["name"]["common"]),
+                                    title: Text(data[index]["name"]["common"]),
                                     subtitle: Text("Currency: " +
-                                        snapshot.data[index]["currencies"]
+                                        data[index]["currencies"]
                                             .toString()
                                             .substring(1, 4)),
-                                    trailing: Text(data2["rates"][snapshot
-                                            .data[index]["currencies"]
+                                    trailing: Text(data2["rates"][data[index]
+                                                ["currencies"]
                                             .toString()
                                             .substring(1, 4)]
                                         .toString()),
@@ -154,16 +117,19 @@ class CountryListState extends State<CountryDetailsList> {
                         } else {
                           return Container();
                         }
+                      } else {
+                        return Container(); // Return a placeholder if the index is out of range
                       }
-                    });
-                  } else {
-                    return const Center(
+                    },
+                  );
+                } else {
+                  return const Center(
                       child: CircularProgressIndicator(
-                        color: Color(0xff7d5fff),
-                      ),
-                    );
-                  }
-                }),
+                    color: Color(0xff7d5fff),
+                  ));
+                }
+              },
+            ),
           ),
           Column(
             mainAxisAlignment: MainAxisAlignment.start,

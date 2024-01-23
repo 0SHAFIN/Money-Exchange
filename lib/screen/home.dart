@@ -90,7 +90,10 @@ class _HomeScreenState extends State<HomeScreen> {
                     style: const TextStyle(fontSize: 14),
                   ),
                 )),
-            const ListTile(
+            ListTile(
+              onTap: () {
+                Navigator.pop(context);
+              },
               leading: Icon(Icons.home),
               title: Text("Home"),
             ),
