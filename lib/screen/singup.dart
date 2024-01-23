@@ -138,26 +138,37 @@ class _SignUpState extends State<SignUp> {
                             padding: const EdgeInsets.symmetric(horizontal: 0),
                             child: ListTile(
                                 title: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              // mainAxisAlignment: MainAxisAlignment.spaceAround,
                               children: [
-                                const Text("Date of Birth :",
-                                    style: TextStyle(
-                                        color: Colors.white70, fontSize: 15)),
-                                const SizedBox(
-                                  width: 10,
-                                ),
-                                selectedDate == null
-                                    ? const Text(
-                                        "Select your DOB",
+                                Icon(Icons.calendar_month),
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    SizedBox(
+                                      width: 4,
+                                    ),
+                                    Text("Date of Birth :",
                                         style: TextStyle(
                                             color: Colors.white70,
-                                            fontSize: 15),
-                                      )
-                                    : Text(
-                                        selectedDate.toString(),
-                                        style: const TextStyle(
-                                            color: Colors.white),
-                                      ),
+                                            fontSize: 15)),
+                                    const SizedBox(
+                                      width: 10,
+                                    ),
+                                    selectedDate == null
+                                        ? const Text(
+                                            "Select your DOB",
+                                            style: TextStyle(
+                                                color: Colors.white70,
+                                                fontSize: 15),
+                                          )
+                                        : Text(
+                                            selectedDate.toString(),
+                                            style: const TextStyle(
+                                                color: Colors.white),
+                                          ),
+                                  ],
+                                ),
                               ],
                             ))),
                       ),
