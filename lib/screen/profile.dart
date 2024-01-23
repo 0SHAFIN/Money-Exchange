@@ -84,15 +84,24 @@ class _ProfileState extends State<Profile> {
                   builder: (context, value, child) => Stack(
                         alignment: Alignment.bottomRight,
                         children: [
-                          CircleAvatar(
-                            radius: 55,
-                            backgroundImage: value.imageFile == null
-                                ? dataImage == null
-                                    ? const AssetImage(
-                                        "assets/images/human.jpg")
-                                    : NetworkImage(dataImage) as ImageProvider
-                                : FileImage(value.imageFile!.absolute)
-                                    as ImageProvider,
+                          Container(
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              border: Border.all(
+                                color: Color(0xff7d5fff),
+                                width: 2,
+                              ),
+                            ),
+                            child: CircleAvatar(
+                              radius: 55,
+                              backgroundImage: value.imageFile == null
+                                  ? dataImage == null
+                                      ? const AssetImage(
+                                          "assets/images/human.jpg")
+                                      : NetworkImage(dataImage) as ImageProvider
+                                  : FileImage(value.imageFile!.absolute)
+                                      as ImageProvider,
+                            ),
                           ),
                           SizedBox(
                             height: 25,

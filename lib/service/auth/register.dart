@@ -27,9 +27,6 @@ class register with ChangeNotifier {
         }).then((value) {
           loading = false;
           notifyListeners();
-          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-            content: Text("data uploadted"),
-          ));
 
           Navigator.pushNamed(context, RouteName.loginScreen);
         }).onError((error, stackTrace) {

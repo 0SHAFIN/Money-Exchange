@@ -61,7 +61,7 @@ class _SignUpState extends State<SignUp> {
                         style: TextStyle(fontSize: 35),
                       ),
                       Text(
-                        "to Currency Exchange ",
+                        "to Money Exchnage ",
                         style: TextStyle(
                             fontSize: 18, fontStyle: FontStyle.italic),
                       )
@@ -212,13 +212,13 @@ class _SignUpState extends State<SignUp> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const Text("Already Have Account?"),
+                      const Text("Already Have An Account?"),
                       TextButton(
                           onPressed: () {
                             Navigator.pushNamed(context, RouteName.loginScreen);
                           },
                           child: const Text(
-                            "SignIn",
+                            "Sign In",
                             style: TextStyle(color: Color(0xff7d5fff)),
                           ))
                     ],

@@ -81,75 +81,82 @@ class CountryListState extends State<CountryDetailsList> {
                       String tmpName = snapshot.data![index]["name"]["common"]
                           .toString()
                           .toLowerCase();
-                      if (searchController.text.isEmpty) {
-                        return Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 20),
-                          child: Column(
-                            children: [
-                              Card(
-                                child: ListTile(
-                                  leading: Image.network(
-                                    snapshot.data[index]["flags"]["png"],
-                                    height: 35,
-                                    width: 35,
+                      int siz = snapshot.data!.length;
+                      print("size: $siz");
+                      if (index < siz) {
+                        if (searchController.text.isEmpty) {
+                          return Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 20),
+                            child: Column(
+                              children: [
+                                Card(
+                                  child: ListTile(
+                                    leading: Image.network(
+                                      snapshot.data[index]["flags"]["png"],
+                                      height: 35,
+                                      width: 35,
+                                    ),
+                                    title: Text(
+                                        snapshot.data[index]["name"]["common"]),
+                                    subtitle: Row(
+                                      children: [
+                                        const Text("Currency: "),
+                                        Text(
+                                          snapshot.data[index]["currencies"]
+                                              .toString()
+                                              .substring(1, 4),
+                                          style: const TextStyle(
+                                              fontSize: 15,
+                                              fontWeight: FontWeight.bold,
+                                              fontStyle: FontStyle.italic),
+                                        ),
+                                      ],
+                                    ),
+                                    trailing: Text(data2["rates"][snapshot
+                                            .data[index]["currencies"]
+                                            .toString()
+                                            .substring(1, 4)]
+                                        .toString()),
                                   ),
-                                  title: Text(
-                                      snapshot.data[index]["name"]["common"]),
-                                  subtitle: Row(
-                                    children: [
-                                      const Text("Currency: "),
-                                      Text(
+                                )
+                              ],
+                            ),
+                          );
+                        } else if (tmpName
+                            .contains(searchController.text.toLowerCase())) {
+                          int zie = tmpName.length;
+                          print("zie: $zie");
+
+                          return Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 20),
+                            child: Column(
+                              children: [
+                                Card(
+                                  child: ListTile(
+                                    leading: Image.network(
+                                      snapshot.data[index]["flags"]["png"],
+                                      height: 35,
+                                      width: 35,
+                                    ),
+                                    title: Text(
+                                        snapshot.data[index]["name"]["common"]),
+                                    subtitle: Text("Currency: " +
                                         snapshot.data[index]["currencies"]
                                             .toString()
-                                            .substring(1, 4),
-                                        style: const TextStyle(
-                                            fontSize: 15,
-                                            fontWeight: FontWeight.bold,
-                                            fontStyle: FontStyle.italic),
-                                      ),
-                                    ],
+                                            .substring(1, 4)),
+                                    trailing: Text(data2["rates"][snapshot
+                                            .data[index]["currencies"]
+                                            .toString()
+                                            .substring(1, 4)]
+                                        .toString()),
                                   ),
-                                  trailing: Text(data2["rates"][snapshot
-                                          .data[index]["currencies"]
-                                          .toString()
-                                          .substring(1, 4)]
-                                      .toString()),
-                                ),
-                              )
-                            ],
-                          ),
-                        );
-                      } else if (tmpName
-                          .contains(searchController.text.toLowerCase())) {
-                        return Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 20),
-                          child: Column(
-                            children: [
-                              Card(
-                                child: ListTile(
-                                  leading: Image.network(
-                                    snapshot.data[index]["flags"]["png"],
-                                    height: 35,
-                                    width: 35,
-                                  ),
-                                  title: Text(
-                                      snapshot.data[index]["name"]["common"]),
-                                  subtitle: Text("Currency: " +
-                                      snapshot.data[index]["currencies"]
-                                          .toString()
-                                          .substring(1, 4)),
-                                  trailing: Text(data2["rates"][snapshot
-                                          .data[index]["currencies"]
-                                          .toString()
-                                          .substring(1, 4)]
-                                      .toString()),
-                                ),
-                              )
-                            ],
-                          ),
-                        );
-                      } else {
-                        return Container();
+                                )
+                              ],
+                            ),
+                          );
+                        } else {
+                          return Container();
+                        }
                       }
                     });
                   } else {

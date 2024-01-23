@@ -12,8 +12,7 @@ class PickImage with ChangeNotifier {
   void uploadImage(context) async {
     try {
       var userId = FirebaseAuth.instance.currentUser!.uid;
-      var ref = await firebase_storage.FirebaseStorage.instance
-          .ref('/foldername' + '1321');
+      var ref = await firebase_storage.FirebaseStorage.instance.ref(userId);
       var upload = ref.putFile(imageFile!.absolute);
       await Future.value(upload);
       var url = await ref.getDownloadURL();

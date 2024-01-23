@@ -53,7 +53,7 @@ class _SignInState extends State<SignIn> {
                           style: TextStyle(fontSize: 35),
                         ),
                         Text(
-                          "to Currency Exchange ",
+                          "to Money Exchnage ",
                           style: TextStyle(
                             fontSize: 18,
                             fontStyle: FontStyle.italic,
