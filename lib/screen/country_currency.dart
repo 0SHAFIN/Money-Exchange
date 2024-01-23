@@ -124,9 +124,6 @@ class CountryListState extends State<CountryDetailsList> {
                           );
                         } else if (tmpName
                             .contains(searchController.text.toLowerCase())) {
-                          int zie = tmpName.length;
-                          print("zie: $zie");
-
                           return Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 20),
                             child: Column(

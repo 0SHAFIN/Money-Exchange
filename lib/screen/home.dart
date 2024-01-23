@@ -158,6 +158,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   Expanded(
                     flex: 2,
                     child: inputField(
+                        keyboard: TextInputType.number,
                         icons: Icons.attach_money_outlined,
                         hint: "amount",
                         fieldController: amountControl,
